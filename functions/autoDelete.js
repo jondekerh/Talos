@@ -1,3 +1,3 @@
-module.exports = {
-  autoDelete: (msg) => {msg.delete(10000)}
+module.exports.delete = (msg) => {
+  msg.delete(10000);
 };
