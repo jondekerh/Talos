@@ -17,7 +17,7 @@ client.setInterval(() => {
 
 //server greeting
 client.on('guildMemberAdd', member => {
-  client.channels.get('504887219585155076').send(`welcome ${member}`);
+  client.channels.get('504887219585155076').send(`welcome ${member}, please read ` + client.channels.get('521199330556772352').toString());
 });
 
 //master parser that handles all commands in messageParser.js
