@@ -3,7 +3,14 @@ const client = new Discord.Client();
 const auth = require('./auth.json');
 const request = require('request');
 const messageParser = require('./functions/messageParser.js');
+
+//the char or string to be placed before commands. default is "T"
 var callout = 'T';
+
+//channel ids to be stored for automated functions
+//(note: these should probably be in a DB to keep them persistant between downtime)
+var botChannel = undefined;
+var greetingChannel = undefined;
 
 
 client.on('ready', () => {
