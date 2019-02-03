@@ -1,10 +1,11 @@
-module.exports.parse = (msg, callout) => {
-  //imports
-  const autoDelete = require('./autoDelete.js');
-  const botChannel = require('./botChannel.js');
-  const greetingChannel = require('./greetingChannel.js');
-  const init = require('./init.js');
+const botChannel = require('./messageParser/botChannel.js');
+const greetingChannel = require('./messageParser/greetingChannel.js');
+const rulesChannel = require('./messageParser/rulesChannel.js');
+const init = require('./messageParser/init.js');
+const autoDelete = require('./messageParser/autoDelete.js');
 
+
+module.exports.parse = (msg, callout) => {
   if (msg.content.startsWith(callout)) {
     //create array so commands can be directed via switch
     var msgArr = msg.content.split(' ');
@@ -20,11 +21,15 @@ module.exports.parse = (msg, callout) => {
       break;
       //set bot command channel
       case ('bot-channel'):
-        return msg.channel.id;
+        botChannel.set(msg);
       break;
       //set greeting channel
       case ('greeting-channel'):
-        return msg.channel.id;
+        greetingChannel.set(msg);
+      break;
+      //set rules channel
+      case ('rules-channel'):
+        rulesChannel.set(msg);
       break;
       //initialize guild doc in DB
       case ('init'):
@@ -33,8 +38,7 @@ module.exports.parse = (msg, callout) => {
       //hanndle unknown commands
       default:
         msg.channel.send('I don\'t understand your command. Type `T help` if you are confused.')
-          .then(msg => autoDelete.delete(msg))
-          .catch(console.error);
+          .then(msg => autoDelete.delete(msg));
       break;
     };
   }
