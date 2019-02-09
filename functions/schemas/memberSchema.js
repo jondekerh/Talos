@@ -2,9 +2,9 @@ const mongoose = require('mongoose');
 
 var memberSchema = new mongoose.Schema({
   userID: String,
-  guild_id: String,
-  joinDate: Number, //use guildMember.joinedtimestamp for this
-  lastPost: Number,
+  guildID: String,
+  joinDate: Number,
+  postCooldown: Boolean,
   posts: Number
 });
 
