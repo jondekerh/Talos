@@ -17,6 +17,7 @@ module.exports.initialize = (msg) => {
       if (docs.length) {
         msg.channel.send('Cannot initialize guild. This is likely because it has already been initialized.')
         .then(msg => autoDelete.delete(msg));
+        console.log(docs);
       } else {
         guildDoc.create(msg);
         allMemberDocs.create(msg);

@@ -3,6 +3,7 @@ const client = new Discord.Client();
 const auth = require('./auth.json');
 const messageParser = require('./functions/messageParser.js');
 const mongoServer = require('./functions/mongoServer.js');
+var Guild = require('./functions/schemas/guildSchema.js');
 
 //the char or string to be placed before commands. default is "T"
 var callout = 'T';
@@ -24,7 +25,7 @@ client.setInterval(() => {
   .catch(err => console.log(err));
 }, 5400000);
 
-//server greeting
+//server greeting and automatic role assignment STILL NEEDS DOING
 client.on('guildMemberAdd', member => {
   client.channels.get('504887219585155076').send(`welcome ${member}, please read ` + client.channels.get('521199330556772352').toString())
   .catch(err => console.log(err));
