@@ -3,6 +3,7 @@ const client = new Discord.Client();
 const auth = require('./auth.json');
 const messageParser = require('./functions/messageParser.js');
 const mongoServer = require('./functions/mongoServer.js');
+const memberDoc = require('./functions/memberDoc.js');
 var Guild = require('./functions/schemas/guildSchema.js');
 
 //the char or string to be placed before commands. default is "T"
@@ -32,7 +33,10 @@ client.on('guildMemberAdd', member => {
 });
 
 //master parser that handles all commands in messageParser.js
-client.on('message', msg => messageParser.parse(msg, callout));
+client.on('message', (msg) => {
+  messageParser.parse(msg, callout);
+  memberDoc.update(msg);
+});
 
 
 client.login(auth.token);
