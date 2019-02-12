@@ -4,14 +4,10 @@ const rulesChannel = require('./messageParser/rulesChannel.js');
 const startingRole = require('./messageParser/startingRole.js');
 const grantedRole = require('./messageParser/grantedRole.js');
 const init = require('./messageParser/init.js');
-const memberDoc = require('./memberDoc.js');
 const autoDelete = require('./messageParser/autoDelete.js');
 
 
 module.exports.parse = (msg, callout) => {
-  //update member doc
-  memberDoc.update(msg);
-
   //if message was a bot command, handle it here
   if (msg.content.startsWith(callout)) {
     //create array so commands can be directed via switch
