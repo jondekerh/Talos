@@ -1,3 +1,4 @@
+const help = require('./messageParser/help.js');
 const botChannel = require('./messageParser/botChannel.js');
 const greetingChannel = require('./messageParser/greetingChannel.js');
 const rulesChannel = require('./messageParser/rulesChannel.js');
@@ -16,11 +17,11 @@ module.exports.parse = (msg, callout) => {
     switch (msgArr[1]) {
       //help command
       case ('help'):
-        msg.channel.send('tbd');
+        msg.channel.send(help.message);
       break;
       //say hi
       case ('hello'):
-        msg.channel.send('sup dudr');
+        msg.channel.send('Hello!');
       break;
       //set bot command channel
       case ('bot-channel'):
