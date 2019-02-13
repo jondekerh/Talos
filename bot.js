@@ -45,7 +45,7 @@ client.on('guildMemberAdd', member => {
         member.addRole(role).catch(console.error);
       }
       if (doc.greetingChannel && doc.rulesChannel) {
-        client.channels.get(doc.greetingChannel).send(`Greetings ${member}, and welcome to Olympus! Be sure to read the ' + client.channels.get(doc.rulesChannel) + ' before posting, and if you have any questions feel free to message an Olympian or Hero.')
+        client.channels.get(doc.greetingChannel).send(`Greetings ${member}, and welcome to Olympus! Be sure to read the ` + client.channels.get(doc.rulesChannel) + ' before posting, and if you have any questions feel free to message an Olympian or Hero.')
         .catch(err => console.log(err));
       }
     }
