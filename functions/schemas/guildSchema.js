@@ -28,7 +28,10 @@ var guildSchema = new mongoose.Schema({
   greetingChannel: String,
   rulesChannel: String,
   startingRole: String,
-  grantedRole: String
+  grantedRole: String,
+  posts: Number,
+  days: Number,
+  cooldown: Number
 });
 
 module.exports = mongoose.model('Guild', guildSchema);

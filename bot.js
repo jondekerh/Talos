@@ -54,8 +54,10 @@ client.on('guildMemberAdd', member => {
 
 //master parser that handles all commands in messageParser.js
 client.on('message', (msg) => {
-  messageParser.parse(msg, callout);
-  memberDoc.update(msg);
+  if (msg.member.id !== client.user.id) {
+    messageParser.parse(msg, callout);
+    memberDoc.update(msg);  
+  }
 });
 
 

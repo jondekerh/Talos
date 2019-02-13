@@ -8,13 +8,14 @@ module.exports.update = (msg, docs) => {
     if (err) {
       console.log(err);
     } else {
-      let twoWeeksBack = Date.now() - 1209600000;
+      let days = Date.now() - (guildDoc.days);
+      let cooldown = guildDoc.cooldown;
       //console.log(memberDoc);
 
       if (msg.member.highestRole.id !== guildDoc.startingRole) {
           //if they are not at the starting role, return
           return;
-      } else if (msg.member.highestRole.id === guildDoc.startingRole && memberDoc.posts >= 500 && memberDoc.joinDate <= twoWeeksBack) {
+      } else if (msg.member.highestRole.id === guildDoc.startingRole && memberDoc.posts >= guildDoc.posts && memberDoc.joinDate <= days) {
           //if are and they've met the criteria, promote them
           let role = msg.guild.roles.find(role => role.id === guildDoc.grantedRole);
           msg.member.addRole(role).catch(console.error);
@@ -38,7 +39,7 @@ module.exports.update = (msg, docs) => {
                 console.log(err);
               }
             })
-          }, 60000);
+          }, cooldown);
           return;
       }
     }

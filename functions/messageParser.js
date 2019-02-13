@@ -1,4 +1,7 @@
 const help = require('./messageParser/help.js');
+const cooldown = require('./messageParser/cooldown.js');
+const posts = require('./messageParser/posts.js');
+const days = require('./messageParser/days.js');
 const botChannel = require('./messageParser/botChannel.js');
 const greetingChannel = require('./messageParser/greetingChannel.js');
 const rulesChannel = require('./messageParser/rulesChannel.js');
@@ -22,6 +25,18 @@ module.exports.parse = (msg, callout) => {
       //say hi
       case ('hello'):
         msg.channel.send('Hello!');
+      break;
+      //sets cooldown on post credit
+      case ('set-cooldown'):
+        cooldown.set(msg, msgArr);
+      break;
+      //sets posts to advance to granted role
+      case ('set-posts'):
+        posts.set(msg, msgArr);
+      break;
+      //sets days user must be in the server for granted role
+      case ('set-days'):
+        days.set(msg, msgArr);
       break;
       //set bot command channel
       case ('bot-channel'):

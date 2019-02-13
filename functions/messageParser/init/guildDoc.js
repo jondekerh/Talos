@@ -9,7 +9,10 @@ module.exports.create = (msg) => {
     guildID: msgGuild,
     botChannel: undefined,
     greetingChannel: undefined,
-    rulesChannel: undefined
+    rulesChannel: undefined,
+    posts: 400,
+    days: 14,
+    cooldown: 60000
   });
 
   newGuild.save(err => {
