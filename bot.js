@@ -15,6 +15,7 @@ client.on('ready', () => {
   console.log(`${client.user.tag} is ready to serve!`);
   mongoServer.connect();
   massCooldown.reset();
+  client.user.setActivity('T help');
 });
 
 //automatic disboard bumping, interval is +5 seconds just in case disboard is slow to update
