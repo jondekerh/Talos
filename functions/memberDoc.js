@@ -28,7 +28,7 @@ module.exports.update = (msg) => {
           }
         })
       } else {
-        updateMemberDoc.update(msg);
+        updateMemberDoc.update(msg, docs);
       }
     })
   }
