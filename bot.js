@@ -4,20 +4,17 @@ const auth = require('./auth.json');
 const messageParser = require('./functions/messageParser.js');
 const mongoServer = require('./functions/mongoServer.js');
 const memberDoc = require('./functions/memberDoc.js');
+const massCooldown = require('./functions/massCooldown.js')
 var Guild = require('./functions/schemas/guildSchema.js');
 
 //the char or string to be placed before commands. default is "T"
 var callout = 'T';
 
-//channel ids to be stored for automated functions
-//(note: these should probably be in a DB to keep them persistant between downtime)
-var botChannel = undefined;
-var greetingChannel = undefined;
-
-//startup message/db connection
+//startup message & db connection & cooldown reset
 client.on('ready', () => {
   console.log(`${client.user.tag} is ready to serve!`);
   mongoServer.connect();
+  massCooldown.reset();
 });
 
 //automatic disboard bumping NOT WORKING AFTER FIRST BUMP?

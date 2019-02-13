@@ -28,10 +28,8 @@ module.exports.update = (msg) => {
           }
         })
       } else {
-        console.log(docs.length);
-        console.log(docs);
+        updateMemberDoc.update(msg);
       }
-
     })
   }
 };

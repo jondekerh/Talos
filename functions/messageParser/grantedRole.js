@@ -3,13 +3,25 @@ module.exports.set = (msg, roleName) => {
   const autoDelete = require('./autoDelete.js');
   var Guild = require('./../schemas/guildSchema.js');
 
-  Guild.findOneAndUpdate({guildID: msg.guild.id}, {grantedRole: msg.guild.roles.find(role => role.name === roleName).id}, (err, guild) => {
-    if (err) {
+  if (!msg.member.hasPermission('ADMINISTRATOR')) {
+    msg.channel.send('Only an admin can use this command.')
+      .then(msg => autoDelete.delete(msg));
+  } else {
+    try {
+      Guild.findOneAndUpdate({guildID: msg.guild.id}, {grantedRole: msg.guild.roles.find(role => role.name === roleName).id}, (err, guild) => {
+      if (err) {
+        console.log(err);
+        msg.channel.send('Role not found. Be aware roles are case-sensitive.')
+          .then(msg => autoDelete.delete(msg));
+      } else {
+        msg.channel.send('Granted role set!')
+          .then(msg => autoDelete.delete(msg));
+        }
+      })
+    } catch(err) {
       console.log(err);
-      msg.channel.send('Role not found. Be aware roles are case-sensitive.');
-    } else {
-      msg.channel.send('Granted role set!')
+      msg.channel.send('Role not found. Be aware roles are case-sensitive.')
         .then(msg => autoDelete.delete(msg));
     }
-  })
+  }
 };

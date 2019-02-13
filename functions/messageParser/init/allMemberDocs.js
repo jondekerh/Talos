@@ -5,8 +5,7 @@ module.exports.create = (msg) => {
 
 
   msg.guild.members.forEach(function(guildMember) {
-
-    //need to check if guildMembers already have a doc since there is a possability
+    //need to check if guildMembers already have a doc since there is a possibility
     //of guild members getting docs made before initialization
     Member.find({userID: guildMember.user.id, guildID: guildMember.guild.id}, (err, docs) => {
       if (err) {
@@ -26,10 +25,7 @@ module.exports.create = (msg) => {
             return;
           }
         })
-      } else {
-        return;
-      }
-
+      } 
     })
   })
 };

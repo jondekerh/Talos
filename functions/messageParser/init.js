@@ -7,7 +7,7 @@ var Guild = require('../schemas/guildSchema.js');
 module.exports.initialize = (msg) => {
   //user must be an admin to run this command
   if (!msg.member.hasPermission('ADMINISTRATOR')) {
-    msg.channel.send('Only an admin can initialize the guild')
+    msg.channel.send('Only an admin can use this command.')
       .then(msg => autoDelete.delete(msg));
   } else {
     //before invoking the guildDoc and allMemberDocs functions, make sure the guild isn't already
