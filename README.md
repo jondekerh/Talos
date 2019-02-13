@@ -25,7 +25,7 @@ T bot-channel
 ``` 
 Some variables, like the number of posts a member needs to get the `granted-role` or the cooldown for a post to be credited, cannot be set this way and must be altered in the code if you want to customize them.
 
-As long as these steps are performed on every server that you add *your* instance of the bot to it will run flawlessly on all of them. With that being said, sharding is not implemented in any way - so expect failure in heavy traffic. 
+As long as these steps are performed on every server that you add *your* instance of the bot to it will function fully on all of them. With that being said, sharding is not implemented in any way - so expect failure in heavy traffic. 
 
 # License
 MIT
