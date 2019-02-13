@@ -10,7 +10,8 @@ module.exports.update = (msg) => {
     } else {
       Member.findOne({userID: msg.member.id, guildID: msg.guild.id}, (err, memberDoc) => {
         let twoWeeksBack = Date.now() - 1209600000;
-        console.log(memberDoc);
+        //console.log(memberDoc);
+        
         if (err) {
           console.log(err);
         } else if (msg.member.highestRole.id !== guildDoc.startingRole) {

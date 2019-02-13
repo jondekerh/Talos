@@ -17,16 +17,38 @@ client.on('ready', () => {
   massCooldown.reset();
 });
 
-//automatic disboard bumping NOT WORKING AFTER FIRST BUMP?
+//automatic disboard bumping, interval is +5 seconds just in case disboard is slow to update
 client.setInterval(() => {
-  client.channels.get('504887219585155076').send('!disboard bump')
-  .catch(err => console.log(err));
-}, 5400000);
+  client.guilds.forEach(function(guild) {
+    Guild.findOne({guildID: guild.id}, (err, doc) => {
+      if (err) {
+        console.log(error);
+      } else {
+        if (doc.botChannel) {
+          client.channels.get(doc.botChannel).send('!disboard bump')
+          .catch(err => console.log(err));
+        }
+      }
+    })
+  })
+}, 5405000);
 
-//server greeting and automatic role assignment STILL NEEDS DOING
+//server greeting and automatic role assignment
 client.on('guildMemberAdd', member => {
-  client.channels.get('504887219585155076').send(`welcome ${member}, please read ` + client.channels.get('521199330556772352').toString())
-  .catch(err => console.log(err));
+  Guild.findOne({guildID: member.guild.id}, (err, doc) => {
+    if (err) {
+      console.log(error);
+    } else {
+      if (doc.startingRole) {
+        let role = member.guild.roles.find(role => role.id === doc.startingRole);
+        member.addRole(role).catch(console.error);
+      }
+      if (doc.greetingChannel && doc.rulesChannel) {
+        client.channels.get(doc.greetingChannel).send(`Welcome ${member}, please read ` + client.channels.get(doc.rulesChannel))
+        .catch(err => console.log(err));
+      }
+    }
+  })
 });
 
 //master parser that handles all commands in messageParser.js
