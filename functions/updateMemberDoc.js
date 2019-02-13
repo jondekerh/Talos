@@ -10,7 +10,7 @@ module.exports.update = (msg, docs) => {
       console.log(err);
     } else {
       let twoWeeksBack = Date.now() - 1209600000;
-      console.log(memberDoc);
+      //console.log(memberDoc);
 
       if (msg.member.highestRole.id !== guildDoc.startingRole) {
           //if they are not at the starting role, return
