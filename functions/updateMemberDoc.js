@@ -3,7 +3,6 @@ module.exports.update = (msg, docs) => {
   var Member = require('./schemas/memberSchema.js');
   var Guild = require('./schemas/guildSchema.js');
   var memberDoc = docs[0];
-  //give athenian if post num reached, else update doc and add do the timeout trick
 
   Guild.findOne({guildID: msg.guild.id}, (err, guildDoc) => {
     if (err) {

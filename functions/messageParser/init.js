@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 const autoDelete = require('./autoDelete.js');
 const guildDoc = require('./init/guildDoc.js');
-const allMemberDocs = require('./init/allMemberDocs.js');
 var Guild = require('../schemas/guildSchema.js');
 
 module.exports.initialize = (msg) => {
@@ -21,7 +20,6 @@ module.exports.initialize = (msg) => {
         .then(msg => autoDelete.delete(msg));
       } else {
         guildDoc.create(msg);
-        allMemberDocs.create(msg);
       }
     })
   }
