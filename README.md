@@ -11,7 +11,12 @@ $ git clone https://github.com/jondekerh/Talos.git
 $ cd Talos
 $ npm install
 ```
-I recommend using [pm2](https://www.npmjs.com/package/pm2) to run both the bot and the instance of mongodb you'll need for it to work in your production server.
+I recommend using [pm2](https://www.npmjs.com/package/pm2) to run both the bot and the instance of mongodb you'll need for it to work in your production server. You'll also need to make an auth.json file in the same directory as bot.js with your bots token in it. It should look like this:
+```
+{
+"token": "YOUR-TOKEN-HERE"
+}
+```
 
 **Running on the Server:**
 Once the bot is running alongside your instance of mongoDB you'll need to use a few commands in your server to make it work. For more info on the following commands you may type `T help` in any channel while the bot is running. For the two `[role]` placeholders use the grammatically correct and case-sensitive name of the role you want to assign. **The channel commands must be used in the channel you want to assign.**
