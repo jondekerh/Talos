@@ -5,11 +5,11 @@ const autoDelete = require('./messageParser/autoDelete.js');
 
 
 module.exports.parse = (msg, callout) => {
-  //create array so commands can be directed via switch
-  var msgArr = msg.content.split(' ');
+  if (msg.content.startsWith(callout)) {
+    //create array so commands can be directed via switch
+    var msgArr = msg.content.split(' ');
 
-  //if message was a bot command, handle it here
-  if (msgArr[0] === callout) {
+    //master switch for bot commands
     switch (msgArr[1]) {
       //say hi
       case ('hello'):
@@ -54,10 +54,6 @@ module.exports.parse = (msg, callout) => {
       //set role to be granted after activity
       case ('granted-role'):
         set.grantedRole(msg, msgArr);
-      break;
-      //hanndle unknown commands
-      default:
-        return;
       break;
     };
   }
