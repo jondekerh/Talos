@@ -7,6 +7,9 @@ module.exports.update = (msg, docs) => {
   Guild.findOne({guildID: msg.guild.id}, (err, guildDoc) => {
     if (err) {
       console.log(err);
+    } else if (!guildDoc) {
+      //exit if no doc
+      return;
     } else {
       let days = Date.now() - (guildDoc.days);
       let cooldown = guildDoc.cooldown;
