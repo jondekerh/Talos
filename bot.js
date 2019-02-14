@@ -15,7 +15,7 @@ client.on('ready', () => {
   console.log(`${client.user.tag} is ready to serve!`);
   mongoServer.connect();
   massCooldown.reset();
-  client.user.setActivity('T help');
+  client.user.setActivity(`${callout} help`);
 });
 
 //automatic disboard bumping, interval is +5 seconds just in case disboard is slow to update
@@ -56,7 +56,7 @@ client.on('guildMemberAdd', member => {
 client.on('message', (msg) => {
   if (msg.member.id !== client.user.id) {
     messageParser.parse(msg, callout);
-    memberDoc.update(msg);  
+    memberDoc.update(msg);
   }
 });
 
