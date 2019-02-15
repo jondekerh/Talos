@@ -18,22 +18,6 @@ client.on('ready', () => {
   client.user.setActivity(`${callout} help`);
 });
 
-//automatic disboard bumping, interval is +5 seconds just in case disboard is slow to update
-client.setInterval(() => {
-  client.guilds.forEach(function(guild) {
-    Guild.findOne({guildID: guild.id}, (err, doc) => {
-      if (err) {
-        console.log(error);
-      } else {
-        if (doc.botChannel) {
-          client.channels.get(doc.botChannel).send('!disboard bump')
-          .catch(err => console.log(err));
-        }
-      }
-    })
-  })
-}, 5405000);
-
 //server greeting and automatic role assignment
 client.on('guildMemberAdd', member => {
   Guild.findOne({guildID: member.guild.id}, (err, doc) => {

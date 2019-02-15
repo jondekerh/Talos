@@ -1,5 +1,5 @@
 # Talos
-A modular discord bot made for the Greek-themed Olympus server. Automatically grants full membership to trial members, a trial role to new members, bumps the server listing on disboard, greets new users, and more soon to come!
+A modular discord bot made for the Greek-themed Olympus server. Automatically grants full membership to trial members, a trial role to new members, has basic moderation commands, greets new users, and more soon to come!
 
 # Installation
 You must have [node.js](https://nodejs.org/en/) and [mongoDB](https://docs.mongodb.com/manual/installation/#tutorials) installed locally for this to run.
