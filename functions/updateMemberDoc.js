@@ -14,15 +14,13 @@ module.exports.update = (msg, docs) => {
       let days = Date.now() - (guildDoc.days);
       let cooldown = guildDoc.cooldown;
       let memberRoles = msg.member.roles.keyArray();
-      console.log(memberDoc);
+      //console.log(memberDoc);
 
       if (!memberRoles.includes(guildDoc.startingRole)) {
           //if they are not at the starting role, return
-          console.log('ur not a slave');
           return;
       } else if (memberRoles.includes(guildDoc.startingRole || memberRoles.includes(guildDoc.grantedRole)) && memberDoc.posts >= guildDoc.posts && memberDoc.joinDate <= days) {
           //if are and they've met the criteria, promote them
-          console.log('you made it bruv');
           let startingRole = msg.guild.roles.find(role => role.id === guildDoc.startingRole);
           let grantedRole = msg.guild.roles.find(role => role.id === guildDoc.grantedRole);
 
@@ -31,7 +29,6 @@ module.exports.update = (msg, docs) => {
           return;
       } else if (memberRoles.includes(guildDoc.startingRole) && memberDoc.postCooldown === false) {
           //if they are but they haven't, add a post and trigger the cooldown
-          console.log('not yet my dude');
           let postCount = memberDoc.posts;
           postCount++;
 
