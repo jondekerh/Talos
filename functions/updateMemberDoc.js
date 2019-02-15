@@ -19,7 +19,7 @@ module.exports.update = (msg, docs) => {
       if (!memberRoles.includes(guildDoc.startingRole)) {
           //if they are not at the starting role, return
           return;
-      } else if (memberRoles.includes(guildDoc.startingRole || memberRoles.includes(guildDoc.grantedRole)) && memberDoc.posts >= guildDoc.posts && memberDoc.joinDate <= days) {
+      } else if (memberRoles.includes(guildDoc.startingRole) && memberDoc.posts >= guildDoc.posts && memberDoc.joinDate <= days) {
           //if are and they've met the criteria, promote them
           let startingRole = msg.guild.roles.find(role => role.id === guildDoc.startingRole);
           let grantedRole = msg.guild.roles.find(role => role.id === guildDoc.grantedRole);
