@@ -29,6 +29,7 @@ var guildSchema = new mongoose.Schema({
   rulesChannel: String,
   startingRole: String,
   grantedRole: String,
+  muzzleRole: String,
   posts: Number,
   days: Number,
   cooldown: Number
