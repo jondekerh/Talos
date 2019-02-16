@@ -150,3 +150,22 @@ module.exports.grantedRole = (msg, msgArr) => {
     }
   }
 };
+
+//muzzle role
+module.exports.muzzleRole = (msg, msgArr) => {
+  if (!msg.member.hasPermission('ADMINISTRATOR')) {
+    msg.channel.send('Only an admin can use this command.')
+      .then(msg => autoDelete.delete(msg));
+  } else {
+    try {
+      Guild.findOneAndUpdate({guildID: msg.guild.id}, {muzzleRole: msg.guild.roles.find(role => role.name === msgArr[2]).id}, (err, guild) => {
+        msg.channel.send('Muzzle role set!')
+          .then(msg => autoDelete.delete(msg));
+      })
+    } catch(err) {
+      console.log(err);
+      msg.channel.send('Role not found. Be aware roles are case-sensitive.')
+        .then(msg => autoDelete.delete(msg));
+    }
+  }
+};

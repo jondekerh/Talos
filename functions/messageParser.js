@@ -1,6 +1,7 @@
 const help = require('./messageParser/help.js');
 const init = require('./messageParser/init.js');
 const set = require('./messageParser/set.js');
+const mod = require('./messageParser/moderation.js');
 const autoDelete = require('./messageParser/autoDelete.js');
 
 
@@ -54,6 +55,14 @@ module.exports.parse = (msg, callout) => {
       //set role to be granted after activity
       case ('granted-role'):
         set.grantedRole(msg, msgArr);
+      break;
+      //set role for muzzle
+      case ('muzzle-role'):
+        set.muzzleRole(msg, msgArr);
+      break;
+      //muzzle command
+      case ('muzzle'):
+        mod.muzzle(msg);
       break;
     };
   }

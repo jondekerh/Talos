@@ -20,12 +20,9 @@ module.exports.update = (msg, docs) => {
           //if they are not at the starting role, return
           return;
       } else if (memberRoles.includes(guildDoc.startingRole) && memberDoc.posts >= guildDoc.posts && memberDoc.joinDate <= days) {
-          //if are and they've met the criteria, promote them
-          let startingRole = msg.guild.roles.find(role => role.id === guildDoc.startingRole);
-          let grantedRole = msg.guild.roles.find(role => role.id === guildDoc.grantedRole);
-
-          msg.member.removeRole(startingRole).catch(console.error);
-          msg.member.addRole(grantedRole).catch(console.error);
+          //if they are and they've met the criteria, promote them
+          msg.member.removeRole(guildDoc.startingRole).catch(console.error);
+          msg.member.addRole(guildDoc.grantedRole).catch(console.error);
           return;
       } else if (memberRoles.includes(guildDoc.startingRole) && memberDoc.postCooldown === false) {
           //if they are but they haven't, add a post and trigger the cooldown
