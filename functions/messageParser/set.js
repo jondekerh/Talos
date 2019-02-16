@@ -120,7 +120,8 @@ module.exports.startingRole = (msg, msgArr) => {
       .then(msg => autoDelete.delete(msg));
   } else {
     try {
-      Guild.findOneAndUpdate({guildID: msg.guild.id}, {startingRole: msg.guild.roles.find(role => role.name === msgArr[2]).id}, (err, guild) => {
+      roleName = msg.content.replace( /(^.*\(|\).*$)/g, '' );
+      Guild.findOneAndUpdate({guildID: msg.guild.id}, {startingRole: msg.guild.roles.find(role => role.name === roleName).id}, (err, guild) => {
         msg.channel.send('Starting role set!')
           .then(msg => autoDelete.delete(msg));
       })
@@ -139,7 +140,8 @@ module.exports.grantedRole = (msg, msgArr) => {
       .then(msg => autoDelete.delete(msg));
   } else {
     try {
-      Guild.findOneAndUpdate({guildID: msg.guild.id}, {grantedRole: msg.guild.roles.find(role => role.name === msgArr[2]).id}, (err, guild) => {
+      roleName = msg.content.replace( /(^.*\(|\).*$)/g, '' );
+      Guild.findOneAndUpdate({guildID: msg.guild.id}, {grantedRole: msg.guild.roles.find(role => role.name === roleName).id}, (err, guild) => {
         msg.channel.send('Granted role set!')
           .then(msg => autoDelete.delete(msg));
       })
@@ -158,7 +160,8 @@ module.exports.muzzleRole = (msg, msgArr) => {
       .then(msg => autoDelete.delete(msg));
   } else {
     try {
-      Guild.findOneAndUpdate({guildID: msg.guild.id}, {muzzleRole: msg.guild.roles.find(role => role.name === msgArr[2]).id}, (err, guild) => {
+      roleName = msg.content.replace( /(^.*\(|\).*$)/g, '' );
+      Guild.findOneAndUpdate({guildID: msg.guild.id}, {muzzleRole: msg.guild.roles.find(role => role.name === roleName).id}, (err, guild) => {
         msg.channel.send('Muzzle role set!')
           .then(msg => autoDelete.delete(msg));
       })
