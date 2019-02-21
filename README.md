@@ -33,9 +33,9 @@ Some variables, like the number of posts a member needs to get the `granted-role
 As long as these steps are performed on every server that you add *your* instance of the bot to it will function fully on all of them. With that being said, sharding is not implemented in any way - so expect errors if it's on too many servers.
 
 # To Do
--[ ] Figure out how to test discord bots and add tests.
--[ ] Revamp this README to accommodate small changes made to many functions.
--[ ] Revamp help command to be more aesthetic.
+- [ ] Figure out how to test discord bots and add tests.
+- [ ] Revamp this README to accommodate small changes made to many functions.
+- [ ] Revamp help command to be more aesthetic.
 
 # License
 MIT
