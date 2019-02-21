@@ -38,27 +38,27 @@ module.exports.parse = (msg, callout) => {
       break;
       //set bot command channel
       case ('bot-channel'):
-        set.botChannel(msg);
+        set.channel(msg, msgArr, 'botChannel');
       break;
       //set greeting channel
       case ('greeting-channel'):
-        set.greetingChannel(msg);
+        set.channel(msg, msgArr, 'greetingChannel');
       break;
       //set rules channel
       case ('rules-channel'):
-        set.rulesChannel(msg);
+        set.channel(msg, msgArr, 'rulesChannel');
       break;
       //set role to give members on join
       case ('starting-role'):
-        set.startingRole(msg, msgArr);
+        set.role(msg, msgArr, 'startingRole');
       break;
       //set role to be granted after activity
       case ('granted-role'):
-        set.grantedRole(msg, msgArr);
+        set.role(msg, msgArr, 'grantedRole');
       break;
       //set role for muzzle
       case ('muzzle-role'):
-        set.muzzleRole(msg, msgArr);
+        set.role(msg, msgArr, 'muzzleRole');
       break;
       //muzzle command
       case ('muzzle'):

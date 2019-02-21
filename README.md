@@ -19,14 +19,14 @@ I recommend using [pm2](https://www.npmjs.com/package/pm2) to run both the bot a
 ```
 
 **Running on the Server:**
-Once the bot is running alongside your instance of mongoDB you'll need to use a few commands in your server to make it work. For more info on the following commands you may type `T help` in any channel while the bot is running. For any role assignments you must include the parenthesis in `([role])`. Use the grammatically correct and case-sensitive name of the role you want to assign. **The channel commands must be used in the channel you want to assign.**
+Once the bot is running alongside your instance of mongoDB you'll need to use a few commands in your server to make it work. For more info on the following commands you may type `T help` in any channel while the bot is running. For any role assignments you must include the parenthesis in `([role])`, and channels must be mentioned using the pound symbol. Use the grammatically correct and case-sensitive name of the role you want to assign.
 ```
 T init
 T starting-role ([role])
 T granted-role ([role])
-T greeting-channel
-T rules-channel
-T bot-channel
+T greeting-channel #[channel]
+T rules-channel #[channel]
+T bot-channel #[channel]
 ```
 Some variables, like the number of posts a member needs to get the `granted-role` or the cooldown for a post to be credited, can be changed with additional commands found by typing `T-help` in the server. The default variables are `400` posts, `14` days, and a `60` second cooldown.
 

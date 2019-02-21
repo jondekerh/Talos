@@ -62,107 +62,37 @@ module.exports.days = (msg, msgArr) => {
   }
 };
 
-//bot channel
-module.exports.botChannel = (msg) => {
-  if (!msg.member.hasPermission('ADMINISTRATOR')) {
-    msg.channel.send('Only an admin can use this command.')
-      .then(msg => autoDelete.delete(msg));
-  } else {
-    Guild.findOneAndUpdate({guildID: msg.guild.id}, {botChannel: msg.channel.id}, (err, guild) => {
-      if (err) {
-        console.log(err);
-      } else {
-        msg.channel.send('Bot channel set!')
-          .then(msg => autoDelete.delete(msg));
-      }
-    })
-  }
-};
-
-//greeting channel
-module.exports.greetingChannel = (msg) => {
-  if (!msg.member.hasPermission('ADMINISTRATOR')) {
-    msg.channel.send('Only an admin can use this command.')
-      .then(msg => autoDelete.delete(msg));
-  } else {
-    Guild.findOneAndUpdate({guildID: msg.guild.id}, {greetingChannel: msg.channel.id}, (err, guild) => {
-      if (err) {
-        console.log(err);
-      } else {
-        msg.channel.send('Greeting channel set!')
-          .then(msg => autoDelete.delete(msg));
-      }
-    })
-  }
-};
-
-//rules channel
-module.exports.rulesChannel = (msg) => {
-  if (!msg.member.hasPermission('ADMINISTRATOR')) {
-    msg.channel.send('Only an admin can use this command.')
-      .then(msg => autoDelete.delete(msg));
-  } else {
-    Guild.findOneAndUpdate({guildID: msg.guild.id}, {rulesChannel: msg.channel.id}, (err, guild) => {
-      if (err) {
-        console.log(err);
-      } else {
-        msg.channel.send('Rules channel set!')
-          .then(msg => autoDelete.delete(msg));
-      }
-    })
-  }
-};
-
-//starting role
-module.exports.startingRole = (msg, msgArr) => {
+//modular channel set
+module.exports.channel = (msg, msgArr, field) => {
   if (!msg.member.hasPermission('ADMINISTRATOR')) {
     msg.channel.send('Only an admin can use this command.')
       .then(msg => autoDelete.delete(msg));
   } else {
     try {
-      roleName = msg.content.replace( /(^.*\(|\).*$)/g, '' );
-      Guild.findOneAndUpdate({guildID: msg.guild.id}, {startingRole: msg.guild.roles.find(role => role.name === roleName).id}, (err, guild) => {
-        msg.channel.send('Starting role set!')
+      let channelID = msg.mentions.channels.find(channel => channel).id;
+      let channelName = msg.mentions.channels.find(channel => channel).name;
+      Guild.findOneAndUpdate({guildID: msg.guild.id}, {[field]: channelID}, (err, guild) => {
+        msg.channel.send(`${msgArr[1]} set to ${channelName}!`)
           .then(msg => autoDelete.delete(msg));
       })
-    } catch(err) {
+    } catch (err) {
       console.log(err);
-      msg.channel.send('Role not found. Be aware roles are case-sensitive.')
+      msg.channel.send('Channel not found. Make sure you\'re tagging it with the pound symbol.')
         .then(msg => autoDelete.delete(msg));
     }
   }
 };
 
-//granted role
-module.exports.grantedRole = (msg, msgArr) => {
+//modular role set
+module.exports.role = (msg, msgArr, field) => {
   if (!msg.member.hasPermission('ADMINISTRATOR')) {
     msg.channel.send('Only an admin can use this command.')
       .then(msg => autoDelete.delete(msg));
   } else {
     try {
-      roleName = msg.content.replace( /(^.*\(|\).*$)/g, '' );
-      Guild.findOneAndUpdate({guildID: msg.guild.id}, {grantedRole: msg.guild.roles.find(role => role.name === roleName).id}, (err, guild) => {
-        msg.channel.send('Granted role set!')
-          .then(msg => autoDelete.delete(msg));
-      })
-    } catch(err) {
-      console.log(err);
-      msg.channel.send('Role not found. Be aware roles are case-sensitive.')
-        .then(msg => autoDelete.delete(msg));
-    }
-  }
-};
-
-//muzzle role
-module.exports.muzzleRole = (msg, msgArr) => {
-  if (!msg.member.hasPermission('ADMINISTRATOR')) {
-    msg.channel.send('Only an admin can use this command.')
-      .then(msg => autoDelete.delete(msg));
-  } else {
-    try {
-      roleName = msg.content.replace( /(^.*\(|\).*$)/g, '' );
-      Guild.findOneAndUpdate({guildID: msg.guild.id}, {muzzleRole: msg.guild.roles.find(role => role.name === roleName).id}, (err, guild) => {
-        msg.channel.send('Muzzle role set!')
+      let roleName = msg.content.replace( /(^.*\(|\).*$)/g, '' );
+      Guild.findOneAndUpdate({guildID: msg.guild.id}, {[field]: msg.guild.roles.find(role => role.name === roleName).id}, (err, guild) => {
+        msg.channel.send(`${msgArr[1]} set to ${roleName}!`)
           .then(msg => autoDelete.delete(msg));
       })
     } catch(err) {

@@ -33,3 +33,11 @@ module.exports.muzzle = (msg) => {
     })
   }
 };
+
+module.exports.kick = (msg) => {
+
+};
+
+module.exports.ban = (msg) => {
+
+};
