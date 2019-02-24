@@ -64,6 +64,14 @@ module.exports.parse = (msg, callout) => {
       case ('muzzle'):
         mod.muzzle(msg);
       break;
+      //kick command
+      case ('kick'):
+        mod.kick(msg);
+      break;
+      //ban command
+      case ('ban'):
+        mod.ban(msg);
+      break;
     };
   }
 };
