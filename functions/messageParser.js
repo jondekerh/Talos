@@ -1,4 +1,5 @@
 const help = require('./messageParser/help.js');
+const setup = require('./messageParser/setup.js');
 const init = require('./messageParser/init.js');
 const set = require('./messageParser/set.js');
 const mod = require('./messageParser/moderation.js');
@@ -19,6 +20,10 @@ module.exports.parse = (msg, callout) => {
       //help command
       case ('help'):
         help.message(msg, callout);
+      break;
+      //setup command
+      case ('setup'):
+        setup.message(msg, callout);
       break;
       //initialize guild doc in DB
       case ('init'):
