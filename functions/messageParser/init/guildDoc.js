@@ -11,7 +11,7 @@ module.exports.create = (msg) => {
     greetingChannel: undefined,
     rulesChannel: undefined,
     posts: 400,
-    days: 14,
+    days: 1209600000,
     cooldown: 60000
   });
 
