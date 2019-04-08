@@ -11,7 +11,7 @@ module.exports.initialize = (msg) => {
   } else {
     //before invoking the guildDoc and allMemberDocs functions, make sure the guild isn't already
     //saved to avoid duplicate docs
-    //(does this make the validation in guildSchema.js irrevelant? figure out after release)
+    //(note: validation like this can also be found in guildSchema.js)
     Guild.find({guildID: msg.guild.id}, (err, docs) => {
       if (err) {
         console.log(err);

@@ -8,7 +8,7 @@ module.exports.cooldown = (msg, msgArr) => {
     msg.channel.send('Only an admin can use this command.')
       .then(msg => autoDelete.delete(msg));
   } else {
-    cdInt = parseInt(msgArr[2]) * 1000;
+    let cdInt = parseInt(msgArr[2]) * 1000;
     Guild.findOneAndUpdate({guildID: msg.guild.id}, {cooldown: cdInt}, (err, guild) => {
       if (err) {
         console.log(err);
@@ -28,7 +28,7 @@ module.exports.posts = (msg, msgArr) => {
     msg.channel.send('Only an admin can use this command.')
       .then(msg => autoDelete.delete(msg));
   } else {
-    postsInt = parseInt(msgArr[2]);
+    let postsInt = parseInt(msgArr[2]);
     Guild.findOneAndUpdate({guildID: msg.guild.id}, {posts: postsInt}, (err, guild) => {
       if (err) {
         console.log(err);
@@ -48,7 +48,7 @@ module.exports.days = (msg, msgArr) => {
     msg.channel.send('Only an admin can use this command.')
       .then(msg => autoDelete.delete(msg));
   } else {
-    daysInt = parseInt(msgArr[2]) * 86400000;
+    let daysInt = parseInt(msgArr[2]) * 86400000;
     Guild.findOneAndUpdate({guildID: msg.guild.id}, {days: daysInt}, (err, guild) => {
       if (err) {
         console.log(err);
