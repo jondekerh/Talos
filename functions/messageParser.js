@@ -7,10 +7,9 @@ const autoDelete = require('./messageParser/autoDelete.js');
 
 
 module.exports.parse = (msg, callout) => {
-  if (msg.content.startsWith(callout)) {
-    //create array so commands can be directed via switch
-    var msgArr = msg.content.split(' ');
-
+  //create array so commands can be directed via switch
+  var msgArr = msg.content.split(' ');
+  if (msgArr[0] == callout) {
     //master switch for bot commands (remember to make them all caps for case insensitivity)
     switch (msgArr[1].toUpperCase()) {
       //say hi
